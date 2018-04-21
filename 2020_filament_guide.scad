@@ -1,8 +1,9 @@
 fobbit_height = 2;
-guide_height = 15;
+fobbit_width = 6;
+guide_height = 20;
 
 outer_filament_diameter = 12;
-inner_filament_diameter = 2.2;
+inner_filament_diameter = 2;
 
 rotate([90, 0, 0]) {
 difference() {
@@ -12,7 +13,7 @@ difference() {
         
         // The fobbit on the bottom of the guide
         translate([0, 0, guide_height/2 + fobbit_height/2]) {
-            cube(size=[6.3, 20, fobbit_height], center=true);
+            cube(size=[fobbit_width, 20, fobbit_height], center=true);
         }
     }
     
@@ -27,7 +28,7 @@ difference() {
     // The two intersecting filament guide paths
     for (rotation = [[0, 90, 0], [90, 0, 0]]) {
         rotate(rotation) {
-            translate([0, 0, 12]) {
+            translate([0, 0, 5 + .1]) {
                 cylinder(
                     d1=inner_filament_diameter,
                     d2=outer_filament_diameter,
@@ -36,7 +37,7 @@ difference() {
                     center=true
                 );
             }
-            translate([0, 0, -12]) {
+            translate([0, 0, -5 - .1]) {
                 cylinder(
                     d1=outer_filament_diameter,
                     d2=inner_filament_diameter,
